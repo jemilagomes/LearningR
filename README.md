@@ -1,6 +1,5 @@
-TODO: Add more to the title of your project here
 
-# LearningR:
+# LearningR:Practicing awesomeness :D
 
 TODO: Give a brief description of what your project is about
 
