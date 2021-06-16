@@ -57,3 +57,74 @@ nhanes_small %>%
     select(phys_active) %>%
     rename(physically_active = phys_active)
 
+
+## Filtering
+# filter for all females
+nhanes_small %>%
+    filter(sex == "female")
+
+# Participants who are not female
+nhanes_small %>%
+    filter(sex != "female")
+
+# Participants who have BMI equal to 25
+nhanes_small %>%
+    filter(bmi == 25)
+
+# Participants who have BMI greater than or equal to 25
+nhanes_small %>%
+    filter(bmi >= 25)
+
+# BMI is greater than 25 AND sex is female
+nhanes_small %>%
+    filter(bmi > 25 & sex == "female")
+
+# BMI is grater than 25 or sex is female. fn+alt+ ´for |
+nhanes_small %>%
+    filter(bmi > 25 | sex == "female")
+
+##Arranging data
+# Arranging by age in ascending order
+nhanes_small %>%
+    arrange(age)
+
+#Arrange by sex in ascending order
+nhanes_small %>%
+    arrange(sex)
+
+#Arranging by age in descending order
+nhanes_small %>%
+    arrange(desc(age))
+
+#Arranging by sex then age in ascending order
+nhanes_small %>%
+    arrange(sex, age)
+
+##Arranging by sex then age in descending order
+nhanes_small %>%
+    arrange(desc(sex), age)
+
+##Transform or add columns.
+#Height in meter instead of cm
+nhanes_small %>%
+    mutate(height = height/100)
+
+#Add a new column with logged height values
+nhanes_small %>%
+    mutate(logged_height = log(height))
+
+# Transform height values to metres and add log column in one step.
+nhanes_small %>%
+    mutate(height = height / 100,
+           logged_height = log(height))
+
+#New column based on how active participants are
+nhanes_small %>%
+    mutate(highly_active = if_else(phys_active_days >= 5, "yes", "No"))
+
+
+nhanes_update <- nhanes_small %>%
+    mutate(height = height/100,
+           logged_height = log(height),
+           hightly_active = if_else(phys_active_days >= 5, "yes", "No"))
+
