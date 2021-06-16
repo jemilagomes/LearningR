@@ -6,3 +6,5 @@ Imports:
     rmarkdown,
     distill
 Encoding: UTF-8
+Depends: 
+    R (>= 2.10)
