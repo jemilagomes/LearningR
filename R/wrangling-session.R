@@ -163,3 +163,4 @@ nhanes_small %>%
 #Saving datasets as an .rda file in the data folder
 usethis::use_data(nhanes_small, overwrite = TRUE)
 
+
