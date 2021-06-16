@@ -128,3 +128,18 @@ nhanes_update <- nhanes_small %>%
            logged_height = log(height),
            hightly_active = if_else(phys_active_days >= 5, "yes", "No"))
 
+##Summary statistics by group. na.rm means remove NA.
+nhanes_small %>%
+    summarise(max_bmi = max(bmi))
+
+nhanes_small %>%
+    summarise(max_bmi = max(bmi, na.rm = TRUE))
+
+#Find out how many missing values (NAs) are there?
+nhanes_small %>%
+    summarise(sum_na = sum(is.na(bmi)))
+
+#Calculatiing 2 summary statistics
+nhanes_small %>%
+    summarise(max_bmi = max(bmi, na.rm = TRUE),
+              min_bmi = min(bmi, na.rm = TRUE))
