@@ -1,0 +1,45 @@
+---
+title: "Data viz"
+author: "Jemila Gomes"
+date: "17/6/2021"
+output: html_document
+---
+
+```{r setup}
+#Load packages
+source(here::here("R/package-loading.R"))
+
+# load the tidied dataset
+load(here::here("data/nhanes_small.rda"))
+```
+
+# One variable plots
+
+```{r continuous-variables}
+ggplot(nhanes_small, aes(x = bmi)) + 
+    geom_density()
+
+
+ggplot(nhanes_small, aes(x = bmi)) + 
+    geom_histogram()
+```
+
+```{r discrete-variables}
+ggplot(nhanes_small, aes(x = sex)) +
+    geom_bar()
+
+ggplot(nhanes_small, aes(x = diabetes)) + 
+    geom_bar()
+```
+
+```{r remove-missing-diabetes}
+nhanes_tidies <- nhanes_small %>% 
+    filter(!is.na(diabetes))
+
+usethis::use_data(nhanes_tidies, overwrite = T)
+
+ggplot(nhanes_tidies, aes(x = diabetes)) + 
+    geom_bar()
+```
+
+
