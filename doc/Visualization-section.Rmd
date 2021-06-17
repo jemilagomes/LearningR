@@ -228,6 +228,11 @@ base_scatterplot2 +
 
 ```
 
+# Saving the plot
+
+```{r}
+ggsave(here::here("doc/images/scatterplot.pdf"), base_scatterplot2, width = 7, height = 5)
+```
 
 
 
