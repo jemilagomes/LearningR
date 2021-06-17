@@ -41,5 +41,57 @@ usethis::use_data(nhanes_tidies, overwrite = T)
 ggplot(nhanes_tidies, aes(x = diabetes)) + 
     geom_bar()
 ```
+```{r}
+nhanes_small %>% 
+    filter(!is.na(diabetes)) %>%
+    ggplot(aes(x = diabetes)) + 
+    geom_bar()
+    
+```
+
+# Plotting two variables
+
+```{r 2-continuous-variables}
+
+bmi_chol <- ggplot(nhanes_tidies, aes(x = bmi, y = tot_chol))
+
+bmi_chol + 
+    geom_point()
+
+bmi_chol + 
+    geom_hex()
+
+bmi_chol +
+    geom_smooth()
+
+bmi_chol +
+    geom_hex() + geom_smooth()
+```
+
+```{r 2-discrete-variables}
+two_discrete <- nhanes_tidies %>% 
+    ggplot(aes(x = diabetes, fill = sex))
+
+two_discrete + 
+    geom_bar()
+
+two_discrete + 
+    geom_bar(position = position_dodge ())
+```
+
+```{r discrete-continuous-variable}
+
+two_mixed <- nhanes_tidies %>% 
+    ggplot(aes(x = diabetes, y = bmi))
+
+two_mixed + 
+    geom_boxplot()
+
+two_mixed +
+    geom_jitter()
+
+two_mixed + 
+    geom_violin()
+```
 
 
