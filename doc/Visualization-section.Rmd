@@ -131,3 +131,45 @@ ggplot(nhanes_tidies, aes(x = diabetes, y = poverty)) +
     geom_violin()
 ```
 
+# Plotting three or more variables 
+
+```{r using-colour}
+ 
+# example for using 1 continuous and 2 discrete variables
+nhanes_tidies %>% 
+    ggplot(aes(x = sex, y = bp_sys_ave, colour = diabetes)) +
+    geom_boxplot()
+
+# example of using 3 continuous variables
+nhanes_tidies %>% 
+    ggplot(aes(x = bmi, y = bp_sys_ave, colour = age)) +
+geom_point()
+
+# 2 continuous and 1 discrete variable
+nhanes_tidies %>% 
+    ggplot(aes(x = bmi, y = bp_sys_ave, colour = diabetes)) + 
+    geom_point()
+```
+
+```{r using-faceting}
+
+# side-by-side
+nhanes_tidies %>% 
+    ggplot(aes(x = bmi, y = bp_sys_ave)) + 
+    geom_point() + 
+    facet_grid(cols = vars(diabetes))
+
+# stacked
+nhanes_tidies %>% 
+    ggplot(aes(x = bmi, y = bp_sys_ave)) + 
+    geom_point() + 
+    facet_grid(rows = vars(diabetes))
+
+# 5 variables
+nhanes_tidies %>% 
+    ggplot(aes(x = bmi, y = bp_sys_ave, colour = age)) +
+    geom_point() + 
+    facet_grid(rows = vars(diabetes),
+               cols = vars(sex))
+```
+
