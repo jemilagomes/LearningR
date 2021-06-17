@@ -173,3 +173,62 @@ nhanes_tidies %>%
                cols = vars(sex))
 ```
 
+# Exercise for changing colours
+
+```{r viridis}
+
+# Barplot to work from, with two discrete variables
+base_barplot <- nhanes_tidies %>% 
+    ggplot(aes(x = diabetes, fill = sex)) +
+    geom_bar(position = position_dodge())
+
+base_barplot
+
+base_barplot +
+    scale_fill_viridis_d(option = "F")
+
+# Scatterplot to work from, with three continuous variables
+base_scatterplot <- nhanes_tidies %>% 
+    ggplot(aes(x = bmi, y = bp_sys_ave, colour = age)) +
+    geom_point()
+
+base_scatterplot +
+    scale_color_viridis_c(option = "A")
+```
+
+# Changing plot appearance
+
+```{r build-in-themes}
+
+# Create scatterplot to play with themes
+base_scatterplot2 <- base_scatterplot +
+    facet_grid(rows = vars(diabetes),
+               cols = vars(sex)) +
+    scale_color_viridis_c()
+
+# View the plot with the default theme
+base_scatterplot2
+
+# Try different theme
+base_scatterplot2 +
+    theme_minimal()
+
+base_scatterplot2 +
+    theme_bw()
+
+base_scatterplot2 +
+    theme_classic()
+
+# Set the theme for all plots
+theme_set(theme_classic())
+
+# change title and labels
+base_scatterplot2 +
+    labs(title = "BMI, systolic blood pressure, and age by diabetes and sex", y = "Systolic blood pressure (mmHg)", x = "BMI (kg/m2)")
+
+```
+
+
+
+
+
